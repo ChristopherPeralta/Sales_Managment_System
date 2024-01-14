@@ -24,7 +24,6 @@ public class CustomerRequestDTO {
     @Size(min = 1, max = 100, message = "The email can't be more than 100 letters")
     private String email;
 
-    @NotNull(message = "Active cannot be null")
     private boolean isActive;
 
     @NotBlank(message = "You should select a document type RUC or DNI")
