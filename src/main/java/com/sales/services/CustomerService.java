@@ -3,6 +3,7 @@ package com.sales.services;
 import com.sales.dto.Request.CustomerRequestDTO;
 import com.sales.dto.Response.CustomerResponseDTO;
 import com.sales.entities.Customer;
+import jakarta.validation.Valid;
 
 import java.util.List;
 

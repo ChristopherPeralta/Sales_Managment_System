@@ -6,12 +6,17 @@ import com.sales.dto.mapper.CustomerMapper;
 import com.sales.entities.Customer;
 import com.sales.repositories.CustomerRepository;
 import com.sales.services.CustomerService;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolationException;
+import jakarta.validation.Valid;
+import jakarta.validation.Validator;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Set;
 
 @Transactional
 @AllArgsConstructor
@@ -20,12 +25,13 @@ public class CustomerImpl implements CustomerService {
 
     private final CustomerRepository customerRepository;
     private final CustomerMapper customerMapper;
+    private final Validator validator;
 
     //Listar
     @Transactional(readOnly = true)
     @Override
     public List<CustomerResponseDTO> getAllCustomers() {
-        List<Customer> customersList = customerRepository.findAll();
+        List<Customer> customersList = customerRepository.findByIsActiveTrue();
         return customerMapper.customerResponseDTOListDTOList(customersList);
     }
 
@@ -53,7 +59,7 @@ public class CustomerImpl implements CustomerService {
         customer.setAddress(customerRequestDTO.getAddress());
         customer.setEmail(customerRequestDTO.getEmail());
         customer.setPhone(customerRequestDTO.getPhone());
-        customer.setDocumentNumber(customerRequestDTO.getDocumentTypeName());
+        customer.setDocumentNumber(customerRequestDTO.getDocumentNumber());
 
         Customer customerSaved = customerRepository.save(customer);
         return customerMapper.toDTO(customerSaved);
