@@ -37,6 +37,10 @@ public class Customer {
     private boolean isActive;
 
     @ManyToOne
+    @JoinColumn(name = "district_id", nullable = false)
+    protected District district;
+
+    @ManyToOne
     @JoinColumn(name = "document_type_id", nullable = false)
     protected DocumentType documentType;
 }
