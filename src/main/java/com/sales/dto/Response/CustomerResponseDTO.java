@@ -24,4 +24,8 @@ public class CustomerResponseDTO {
     private boolean isActive;
 
     private String documentTypeName;
+
+    private String districtName;
+
+    private String provinceName;
 }
