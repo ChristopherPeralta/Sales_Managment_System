@@ -3,6 +3,7 @@ package com.sales.controller;
 import com.sales.dto.Request.CustomerRequestDTO;
 import com.sales.dto.Response.CustomerResponseDTO;
 import com.sales.services.CustomerService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -39,7 +40,7 @@ public class CustomerController {
     }
 
     @PostMapping("/customers")
-    public ResponseEntity<CustomerResponseDTO> saveCustomer(@RequestBody CustomerRequestDTO customerRequestDTO) {
+    public ResponseEntity<CustomerResponseDTO> saveCustomer(@Valid @RequestBody CustomerRequestDTO customerRequestDTO) {
         try {
             CustomerResponseDTO responseDTO = customerService.saveCustomer(customerRequestDTO);
             return ResponseEntity.ok(responseDTO);
@@ -49,7 +50,7 @@ public class CustomerController {
     }
 
     @PutMapping("/customers/{id}")
-    public ResponseEntity<CustomerResponseDTO> updateCustomer(@RequestBody CustomerRequestDTO customerRequestDTO, @PathVariable Long id) {
+    public ResponseEntity<CustomerResponseDTO> updateCustomer(@Valid @RequestBody CustomerRequestDTO customerRequestDTO, @PathVariable Long id) {
         try {
             CustomerResponseDTO responseDTO = customerService.updateCustomer(customerRequestDTO, id);
             return ResponseEntity.ok(responseDTO);
