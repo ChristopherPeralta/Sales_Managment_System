@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProvinceRepository extends JpaRepository<Province, Long> {
 
-    @Query("SELECT dt FROM province dt WHERE LOWER(dt.name) = LOWER(:name)")
+    @Query("SELECT dt FROM Province dt WHERE LOWER(dt.name) = LOWER(:name)")
     Province findByNameIgnoreCase(@Param("name") String name);
 }

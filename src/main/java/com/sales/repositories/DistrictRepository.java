@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DistrictRepository extends JpaRepository<District, Long> {
 
-    @Query("SELECT dt FROM district dt WHERE LOWER(dt.name) = LOWER(:name)")
+    @Query("SELECT dt FROM District dt WHERE LOWER(dt.name) = LOWER(:name)")
     District findByNameIgnoreCase(@Param("name") String name);
 }
