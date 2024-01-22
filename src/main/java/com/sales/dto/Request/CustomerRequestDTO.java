@@ -14,6 +14,10 @@ public class CustomerRequestDTO {
     @Size(min = 1, max = 100, message = "The name can't be more than 100 letters")
     private String name;
 
+    @NotBlank(message = "The document number can't be empty")
+    @Pattern(regexp = "\\d{8}|\\d{11}", message = "The document number must be either 8 or 11 digits")
+    private String documentNumber;
+
     @Size(min = 9, max = 9, message = "The phone must have 9 numbers")
     private String phone;
 
@@ -25,6 +29,10 @@ public class CustomerRequestDTO {
     private String email;
 
     private boolean isActive;
+
+    @NotBlank(message = "You should select a district")
+    @Size(min = 1, max = 100, message = "The district name can't be more than 100 letters")
+    private String districtName;
 
     @NotBlank(message = "You should select a document type RUC or DNI")
     @Size(min = 3, max = 3, message = "The document type name must be 3 letters")
