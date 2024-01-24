@@ -18,7 +18,8 @@ public class CustomerRequestDTO {
     @Pattern(regexp = "\\d{8}|\\d{11}", message = "The document number must be either 8 or 11 digits")
     private String documentNumber;
 
-    @Size(min = 9, max = 9, message = "The phone must have 9 numbers")
+
+    @Pattern(regexp = "\\d{9}", message = "The phone must have 9 numbers")
     private String phone;
 
     @Size(min = 1, max = 100, message = "The address can't be more than 100 letters")

@@ -38,7 +38,7 @@ public class CustomerImpl implements CustomerService {
     @Override
     public CustomerResponseDTO getCustomerById(Long id) {
         Customer customer = customerRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("El cliente no existe." + id));
+                .orElseThrow(() -> new IllegalArgumentException("The client with the id number " + id + " does not exist."));
         return customerMapper.toDTO(customer);
     }
 
@@ -53,7 +53,7 @@ public class CustomerImpl implements CustomerService {
     @Override
     public CustomerResponseDTO updateCustomer(CustomerRequestDTO customerRequestDTO, Long id) {
         Customer customer = customerRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("El cliente no existe." + id));
+                .orElseThrow(() -> new IllegalArgumentException("The client with the id number " + id+ " does not exist."));
 
         customer.setName(customerRequestDTO.getName());
         customer.setAddress(customerRequestDTO.getAddress());
@@ -68,7 +68,7 @@ public class CustomerImpl implements CustomerService {
     @Override
     public void deleteCustomer(Long id) {
         Customer customer = customerRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("El cliente no existe." + id));
+                .orElseThrow(() -> new IllegalArgumentException("The client with the id number " + id+ " does not exist."));
         customer.setActive(false);
         customerRepository.save(customer);
     }
